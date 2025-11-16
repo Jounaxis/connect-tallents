@@ -457,4 +457,101 @@
     background-color: #1ec88a;
     color: #0f0f0f;
   }
+
+  /* =============================
+      CARD INTEGRANTE
+============================= */
+  .card-integrante {
+    @apply w-full max-w-xs p-6 rounded-2xl flex flex-col items-center gap-4 backdrop-blur-2xl transition-all duration-300;
+
+    /* vidro escuro */
+    background: rgba(20, 20, 20, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 10px #1ec88a33;
+
+    /* === AQUI PADRONIZA O TAMANHO === */
+    min-height: 380px;
+    /* ajuste fino se quiser */
+  }
+
+  /* Foto */
+  .card-integrante-foto {
+    @apply w-28 h-28 rounded-full object-cover border-2;
+    border-color: #1ec88a88;
+  }
+
+  /* Conteúdo */
+  .card-integrante-conteudo {
+    @apply flex flex-col items-center text-center gap-2 flex-1 justify-between;
+  }
+
+  /* Nome */
+  .card-integrante-nome {
+    @apply text-lg font-semibold;
+    color: var(--texto-escuro);
+  }
+
+  /* Informações */
+  .card-integrante-info {
+    @apply text-sm;
+    color: var(--texto-medio);
+  }
+
+  /* Links */
+  .card-integrante-links {
+    @apply flex gap-3 mt-4;
+  }
+
+  .card-integrante-link {
+    @apply px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300;
+    background-color: var(--verde-metalico-principal);
+    color: white;
+  }
+
+  .card-integrante-link:hover {
+    background-color: var(--verde-metalico-escuro);
+    box-shadow: 0 0 10px #1ec88a;
+    transform: translateY(-2px);
+  }
+
+  /* DARK MODE */
+  .dark .card-integrante {
+    background: rgba(20, 20, 20, 0.35);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .card-integrante-nome {
+    color: #e5e5e5;
+  }
+
+  .dark .card-integrante-info {
+    color: #cccccc;
+  }
+
+  /* ============================
+        DARK MODE
+============================ */
+
+  .dark .card-integrante {
+    background: rgba(20, 20, 20, 0.40);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .card-integrante:hover {
+    background: rgba(20, 20, 20, 0.50);
+  }
+
+  .dark .card-integrante-nome {
+    color: #f2f2f2;
+  }
+
+  .dark .card-integrante-info {
+    color: #d2d2d2;
+  }
+
+  .dark .card-integrante-link {
+    background-color: #1ec88a;
+    color: #0f0f0f;
+  }
+
 }
