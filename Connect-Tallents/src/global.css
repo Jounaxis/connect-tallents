@@ -1,60 +1,66 @@
 @import "tailwindcss";
 
+/* =============================
+      VARIÁVEIS DE COR (NOVAS)
+============================= */
+
 :root {
+  /* Verde metálico principal */
   --verde-metalico-principal: #1EC88A;
   --verde-metalico-escuro: #159F70;
+
+  /* Tons claros neutros */
   --branco-principal: #FFFFFF;
-  --verde-metalico-translucido: #1EC88A4D;
-  --cinza-claro: #F5F5F5;
-  --cinza-medio: #E5E7EB;
-  --cinza-escuro: #374151;
-  --sombra-padrao: rgba(0, 0, 0, 0.1);
+  --branco-suave: #FAFAFA;
+  --cinza-suave: #F3F6F5;
+
+  /* Tons verdes extremamente suaves */
+  --verde-metalico-claro: #B9F4DD;
+  --verde-metalico-suave: #E9FFF7;
+
+  /* Texto */
+  --texto-escuro: #1F2D2B;
+  --texto-medio: #3B4A47;
+
+  /* Sombra */
+  --sombra-padrao: rgba(0, 0, 0, 0.05);
 
   --fonte: "Roboto", sans-serif;
 }
 
-body {
-  @apply flex flex-col min-h-screen m-0 p-0;
-  font-family: var(--fonte)
-}
-
 @layer base {
-  .container {
-    @apply h-screen w-full flex flex-col;
+
+  html,
+  body {
+    @apply h-full;
+    font-family: var(--fonte);
   }
 
-  .container header {
-    @apply h-[20vh] w-screen border-b flex flex-row items-center justify-between p-5;
+  body {
+    @apply flex flex-col min-h-screen m-0 p-0;
+    background-color: var(--branco-suave);
+    color: var(--texto-escuro);
   }
 
-  .container header h1 {
-    @apply text-3xl font-bold;
+  main {
+    @apply flex-1 pt-[80px];
   }
 
-  .container header nav {
-    @apply flex gap-5;
-  }
-
-  .container header nav a {
-    @apply hover:underline;
-  }
-
-  .container main {
-    @apply h-[60vh] w-screen overflow-auto bg-[var(--cinza-claro)];
-  }
-
-  .container footer {
-    @apply h-[20vh] w-screen border-b flex flex-col items-center justify-end p-5;
+  * {
+    @apply box-border max-w-full;
   }
 }
 
 @layer components {
 
   /* =========================
-      CABEÇALHO
-  ========================== */
+    CABEÇALHO / HEADER
+========================== */
+
   .cabecalho {
-    @apply flex items-center justify-between;
+    @apply w-full p-5 shadow-sm;
+    background-color: var(--branco-principal);
+    border-bottom: 1px solid var(--verde-metalico-suave);
 
     position: fixed;
     top: 0;
@@ -62,43 +68,259 @@ body {
     right: 0;
 
     z-index: 50;
-    border: none;
   }
 
-  .cabecalho_logo {
-    @apply flex flex-col;
+  /*
+  LAYOUT:
+  | LOGO |   NAV (CENTRO ABSOLUTO)   | AÇÕES |
+*/
+  .cabecalho_container {
+    @apply w-full max-w-6xl mx-auto flex items-center justify-between relative;
   }
 
-  .cabecalho_logo h1 {
+  /* === LOGO === */
+  .cabecalho_titulo {
     @apply text-2xl font-bold;
     color: var(--verde-metalico-principal);
   }
 
-  .cabecalho_logo p {
-    @apply mt-[0.25rem] text-[0.875rem];
-    color: var(--cinza-escuro);
+  /* === NAV CENTRALIZADA REAL === */
+  .cabecalho_nav {
+    @apply flex gap-6 items-center absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
+
+  .cabecalho_link {
+    @apply text-sm font-medium transition-all duration-200;
+    color: var(--texto-escuro);
+    position: relative;
+  }
+
+  /* Underline neon suave */
+  .cabecalho_link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+
+    width: 0%;
+    height: 2px;
+
+    background-color: var(--verde-metalico-principal);
+    transition: width 0.25s ease;
+    box-shadow: 0 0 6px #1EC88A55;
+  }
+
+  .cabecalho_link:hover::after {
+    width: 100%;
+  }
+
+  .cabecalho_link:hover {
+    color: var(--verde-metalico-escuro);
+    text-shadow: 0 0 8px #1EC88A44;
+  }
+
+  .cabecalho_link:active {
+    transform: scale(0.96);
+  }
+
+  /* === AÇÕES NA DIREITA === */
+  .cabecalho_acoes {
+    @apply flex items-center gap-4;
+  }
+
+  /* BOTÃO LOGIN SIMPLES */
+  .cabecalho_botao_login {
+    @apply text-sm font-medium transition-all duration-200;
+    color: var(--verde-metalico-escuro);
+  }
+
+  .cabecalho_botao_login:hover {
+    color: var(--verde-metalico-principal);
+    text-shadow: 0 0 6px #1EC88A44;
+  }
+
+
+  /* ============================
+      RODAPÉ MINIMALISTA
+============================= */
+
+  .rodape-minimalista {
+    @apply w-full flex flex-col items-center gap-3 py-6 mt-16;
+    background-color: var(--branco-principal);
+    border-top: 1px solid var(--verde-metalico-suave);
+  }
+
+  /* LINKS CENTRAIS */
+  .rodape_links {
+    @apply flex gap-6;
+  }
+
+  .rodape_link {
+    @apply text-sm font-medium transition-all duration-200;
+    color: var(--texto-medio);
+    position: relative;
+  }
+
+  /* Subtle underline hover */
+  .rodape_link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: var(--verde-metalico-principal);
+    transition: width 0.25s ease;
+    box-shadow: 0 0 6px #1EC88A55;
+  }
+
+  .rodape_link:hover::after {
+    width: 100%;
+  }
+
+  .rodape_link:hover {
+    color: var(--verde-metalico-escuro);
+    text-shadow: 0 0 6px #1EC88A33;
+  }
+
+  /* COPYRIGHT */
+  .rodape_copy {
+    @apply text-xs;
+    color: var(--texto-medio);
+  }
+
+
+/* =============================
+        CARD NEON (VIDRO ESCURO)
+============================== */
+
+.card-neon-horizontal {
+  @apply w-full max-w-xl p-6 rounded-2xl flex flex-col gap-3 cursor-pointer
+         transition-all duration-300 backdrop-blur-2xl shadow-md;
+
+  /* Vidro escurecido */
+  background: rgba(20, 20, 20, 0.22);      /* mais escuro, mas ainda vidro */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* Glow suave */
+  box-shadow: 0 0 10px #1EC88A33;
+}
+
+/* Hover – destaca o neon e clareia um pouco o vidro */
+.card-neon-horizontal:hover {
+  transform: translateY(-4px) scale(1.02);
+
+  background: rgba(20, 20, 20, 0.28);      /* um pouco mais claro no hover */
+  border-color: rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 0 18px #1EC88Aaa,
+    0 0 32px #1EC88A66,
+    inset 0 0 10px #1EC88A33;
+}
+
+.card-neon-title {
+  @apply text-xl font-semibold;
+  color: var(--texto-escuro);
+  text-shadow: 0 0 4px #ffffff33;
+}
+
+.card-neon-texto {
+  @apply text-sm leading-relaxed;
+  color: var(--texto-medio);
+}
+
 
   /* =========================
-      RODAPÉ
+        HOME / TELA PRINCIPAL
   ========================== */
-  .rodape {
-    @apply bg-[var(--cinza-medio)] text-[var(--cinza-escuro)] shadow-inner;
+
+  .home-container {
+    @apply flex flex-col items-center gap-10 px-6 mt-10;
   }
 
-  .rodape-conteudo {
-    @apply container px-6 py-4 flex flex-col items-center justify-center gap-2;
+  .home-titulo {
+    @apply text-3xl font-bold text-center;
+    color: var(--texto-escuro);
   }
 
-  .rodape-texto {
-    @apply text-sm;
+  .home-descricao {
+    @apply text-center text-base font-semibold max-w-2xl mx-auto leading-relaxed;
+
+    color: var(--texto-medio);
+
+    /* sutil e elegante */
+    opacity: 0.9;
   }
 
-  .rodape-links {
-    @apply flex gap-4 text-sm;
+  .home-cards {
+    @apply w-full max-w-5xl grid gap-8 place-items-center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 
-  .rodape-link {
-    @apply hover:underline;
+  /* =========================================
+      FUNDO VIDRO + NEON SUAVE (MOVIMENTO)
+========================================= */
+
+  .bg-vidro-suave {
+    @apply fixed inset-0 w-full h-full pointer-events-none overflow-hidden;
+    z-index: -1;
+  }
+
+  /* Camadas suaves */
+  .bg-vidro-suave-layer {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    filter: blur(200px);
+    opacity: 0.25;
+    /* muito suave */
+    border-radius: 50%;
+    animation: suaveFloat 22s ease-in-out infinite;
+  }
+
+  /* Verde claro suave */
+  .s1 {
+    background: #1EC88Aaa;
+    top: -25%;
+    left: -20%;
+    animation-duration: 26s;
+  }
+
+  /* Verde profundo extremamente suave */
+  .s2 {
+    background: #159F7088;
+    bottom: -25%;
+    right: -20%;
+    animation-duration: 32s;
+  }
+
+  /* Roxo delicado para criar contraste leve */
+  .s3 {
+    background: #8f5cf599;
+    top: 10%;
+    left: 45%;
+    opacity: 0.20;
+    animation-duration: 30s;
+  }
+
+  /* Movimento suave */
+  @keyframes suaveFloat {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.20;
+    }
+
+    50% {
+      transform: translate(-40px, 30px) scale(1.15);
+      opacity: 0.28;
+    }
+
+    100% {
+      transform: translate(30px, -30px) scale(1.05);
+      opacity: 0.23;
+    }
   }
 }
