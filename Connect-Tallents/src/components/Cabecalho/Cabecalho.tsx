@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import TrocarTema from "../Tema/Tema";
 
 export default function Cabecalho() {
     return (
@@ -18,7 +19,11 @@ export default function Cabecalho() {
                     <Link to="/perfil" className="cabecalho_link">Contato</Link>
                 </nav>
 
+
                 <div className="cabecalho_acoes">
+                
+                <TrocarTema />
+
                     <Link to="/login" className="cabecalho_botao_login">
                         Login
                     </Link>
