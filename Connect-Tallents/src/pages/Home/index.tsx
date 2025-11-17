@@ -1,46 +1,51 @@
 import Background from "../../components/Background/Background";
 import CardNeon from "../../components/CardNeon/CardNeon";
 
+// ÍCONES
+import { FiGlobe, FiUsers, FiBriefcase, FiTarget } from "react-icons/fi";
+
 export default function Home() {
     return (
         <main className="home-container">
-            
-            <Background/>
+
+            <Background />
 
             <h1 className="home-titulo">Conheça a Connect Tallents</h1>
 
-            {/* Texto explicativo */}
             <p className="home-descricao">
                 Explore as principais funcionalidades da plataforma.
                 Escolha uma das opções abaixo para navegar por nossos serviços
                 e descobrir tudo o que a Connect Tallents pode oferecer.
             </p>
 
-            {/* Cards */}
             <div className="home-cards">
 
                 <CardNeon
-                    titulo="Titulo 1"
-                    texto="Página 1"
-                    link="/error"
+                    titulo="Global"
+                    texto="Conecte-se com profissionais de diferentes países e culturas"
+                    link="/global"
+                    icon={<FiGlobe />}
                 />
 
                 <CardNeon
-                    titulo="Titulo 2"
-                    texto="Página 2"
-                    link="/"
+                    titulo="Colaboração"
+                    texto="Trabalhe remotamente em projetos reais com equipes diversas"
+                    link="/colaboracao"
+                    icon={<FiUsers />}
                 />
 
                 <CardNeon
-                    titulo="Titulo 3"
-                    texto="Página 3"
-                    link="/"
+                    titulo="Experiência"
+                    texto="Troque vivências e aprenda com profissionais ao redor do mundo"
+                    link="/experiencia"
+                    icon={<FiBriefcase />}
                 />
 
                 <CardNeon
-                    titulo="Titulo 4"
-                    texto="Página 4"
-                    link="/"
+                    titulo="Preparação"
+                    texto="Prepare-se para o mercado de trabalho com projetos práticos"
+                    link="/preparacao"
+                    icon={<FiTarget />}
                 />
 
             </div>

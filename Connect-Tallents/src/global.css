@@ -210,36 +210,119 @@
     color: #d1d1d1;
   }
 
-  /* =============================
-        CARD NEON (VIDRO ESCURO)
-============================== */
+  /* =========================================
+      CARD NEON (NOVO ESTILO PREMIUM)
+========================================= */
 
   .card-neon-horizontal {
-    @apply w-full max-w-xl p-6 rounded-2xl flex flex-col gap-3 cursor-pointer transition-all duration-300 backdrop-blur-2xl shadow-md;
+    @apply w-[580px] h-[180px] p-6 rounded-2xl flex flex-col gap-4 cursor-pointer transition-all duration-300 backdrop-blur-2xl shadow-md;
+
+    /* Vidro escuro */
     background: rgba(20, 20, 20, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 10px #1EC88A33;
+
+    /* Glow suave */
+    box-shadow: 0 0 12px #1EC88A33;
   }
 
   .card-neon-horizontal:hover {
     transform: translateY(-4px) scale(1.02);
+
     background: rgba(20, 20, 20, 0.28);
     border-color: rgba(255, 255, 255, 0.28);
+
     box-shadow:
       0 0 18px #1EC88Aaa,
       0 0 32px #1EC88A66,
       inset 0 0 10px #1EC88A33;
   }
 
+
+  /* ÍCONE redondo com glow */
+  /* Ícone dentro do card */
+  .card-neon-icone {
+    @apply flex items-center justify-center mb-2;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 9999px;
+    /* círculo */
+    background: rgba(30, 200, 138, 0.15);
+
+    border: 1px solid rgba(30, 200, 138, 0.35);
+    box-shadow:
+      0 0 6px #1ec88a55,
+      inset 0 0 8px #1ec88a33;
+
+    color: #1EC88A;
+    /* cor do ícone */
+    font-size: 22px;
+  }
+
+  /* Título */
   .card-neon-title {
-    @apply text-xl font-semibold;
-    color: var(--texto-escuro);
-    text-shadow: 0 0 4px #ffffff33;
+    @apply text-lg font-semibold mt-1;
+    color: #ffffff;
+  }
+
+  /* Texto */
+  .card-neon-texto {
+    @apply text-sm leading-relaxed mt-2;
+    color: #c9e9dd;
+    /* verde claro com acessibilidade */
+  }
+
+  /* =========================
+   CARD NEON — LIGHT MODE
+========================= */
+  .card-neon-horizontal {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 0 8px #1EC88A33,
+      inset 0 0 8px #1EC88A22;
+
+    @apply backdrop-blur-xl rounded-2xl p-6 flex flex-col gap-3 transition-all duration-300;
+  }
+
+  .card-neon-title {
+    color: #0f1f1f;
   }
 
   .card-neon-texto {
-    @apply text-sm leading-relaxed;
-    color: var(--texto-medio);
+    color: #3a3f3d;
+  }
+
+  .card-neon-icone {
+    background: rgba(30, 200, 138, 0.20);
+    border-color: rgba(30, 200, 138, 0.35);
+    color: #1EC88A;
+  }
+
+  /* =========================
+   CARD NEON — DARK MODE
+========================= */
+  .dark .card-neon-horizontal {
+    background: rgba(20, 20, 20, 0.35);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 0 12px #1EC88A55,
+      inset 0 0 10px #1EC88A33;
+  }
+
+  .dark .card-neon-title {
+    color: #e8e8e8;
+  }
+
+  .dark .card-neon-texto {
+    color: #d4d4d4;
+  }
+
+  .dark .card-neon-icone {
+    background: rgba(30, 200, 138, 0.12);
+    border-color: rgba(30, 200, 138, 0.45);
+    color: #18ffb0;
   }
 
 
@@ -247,25 +330,57 @@
         HOME / TELA PRINCIPAL
   ========================== */
 
+  /* Container geral da página */
   .home-container {
     @apply flex flex-col items-center gap-10 px-6 mt-10;
   }
 
+  /* Título */
   .home-titulo {
     @apply text-3xl font-bold text-center;
-    text-shadow: 0 0 4px #1ec88a22;
     color: var(--texto-escuro);
   }
 
-  .home-descricao {
-    @apply text-center text-base font-semibold max-w-2xl mx-auto leading-relaxed;
-    color: var(--texto-medio);
-    opacity: 0.9;
+  .dark .home-titulo {
+    color: #f1f1f1;
   }
 
+  /* Texto explicativo */
+  .home-descricao {
+    @apply text-center text-lg font-semibold max-w-2xl mx-auto leading-relaxed opacity-90;
+    color: var(--texto-medio);
+  }
+
+  .dark .home-descricao {
+    color: #d6d6d6;
+  }
+
+  /* =========================
+      GRID DOS CARDS
+========================= */
+
   .home-cards {
-    @apply w-full max-w-5xl grid gap-8 place-items-center;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    @apply w-full max-w-6xl mx-auto mt-24 grid gap-10 place-items-center;
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
+  }
+
+  /* Responsivo: no mobile vira 1 por linha */
+  @media (max-width: 768px) {
+    .home-cards {
+      grid-template-columns: 1fr;
+      margin-top: 40px;
+    }
+  }
+
+  /* =========================
+      CARD - DIMENSÕES FIXAS
+========================= */
+
+  .card-neon-horizontal {
+    width: 380px;
+    /* largura fixa */
+    height: 180px;
+    /* altura fixa */
   }
 
   /* =========================================
@@ -459,86 +574,99 @@
   }
 
   /* =============================
-      CARD INTEGRANTE
+      CARD INTEGRANTE — LIGHT MODE
 ============================= */
+
   .card-integrante {
-    @apply w-full max-w-xs p-6 rounded-2xl flex flex-col items-center gap-4 backdrop-blur-2xl transition-all duration-300;
+    @apply w-full max-w-xs p-6 rounded-2xl flex flex-col items-center gap-4 backdrop-blur-xl transition-all duration-300;
 
-    /* vidro escuro */
-    background: rgba(20, 20, 20, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 10px #1ec88a33;
+    /* Vidro claro semelhante ao CardNeon */
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
-    /* === AQUI PADRONIZA O TAMANHO === */
+    /* glow leve verde */
+    box-shadow:
+      0 0 8px #1EC88A33,
+      inset 0 0 6px #1EC88A22;
+
     min-height: 380px;
-    /* ajuste fino se quiser */
+    /* mantém padrão */
   }
 
-  /* Foto */
+  /* FOTO */
   .card-integrante-foto {
-    @apply w-28 h-28 rounded-full object-cover border-2;
-    border-color: #1ec88a88;
+    @apply w-28 h-28 rounded-full object-cover border-2 transition-all duration-300;
+    border-color: rgba(30, 200, 138, 0.45);
+    box-shadow: 0 0 10px #1EC88A33;
   }
 
-  /* Conteúdo */
+  /* CONTEÚDO */
   .card-integrante-conteudo {
     @apply flex flex-col items-center text-center gap-2 flex-1 justify-between;
   }
 
-  /* Nome */
+  /* TÍTULO */
   .card-integrante-nome {
     @apply text-lg font-semibold;
-    color: var(--texto-escuro);
+    color: #0f1f1f;
+    /* igual ao light do CardNeon */
   }
 
-  /* Informações */
+  /* INFOS */
   .card-integrante-info {
     @apply text-sm;
-    color: var(--texto-medio);
+    color: #3a3f3d;
+    /* texto médio */
   }
 
-  /* Links */
+  /* BOTÕES */
   .card-integrante-links {
     @apply flex gap-3 mt-4;
   }
 
   .card-integrante-link {
     @apply px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300;
+
     background-color: var(--verde-metalico-principal);
     color: white;
+    box-shadow: 0 0 6px #1EC88A55;
   }
 
   .card-integrante-link:hover {
     background-color: var(--verde-metalico-escuro);
-    box-shadow: 0 0 10px #1ec88a;
     transform: translateY(-2px);
+    box-shadow: 0 0 10px #1EC88A;
   }
 
-  /* DARK MODE */
+  /* =========================================
+    GRID DOS INTEGRANTES
+========================================= */
+
+  .integrantes-cards {
+    @apply w-full max-w-6xl mx-auto mt-12 grid gap-12 place-items-center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  /* Para manter os cards 100% alinhados no mobile também */
+  .integrantes-cards .card-integrante {
+    @apply w-full;
+  }
+
+  /* =============================
+      CARD INTEGRANTE — DARK MODE
+============================= */
+
   .dark .card-integrante {
     background: rgba(20, 20, 20, 0.35);
     border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 0 12px #1EC88A55,
+      inset 0 0 10px #1EC88A33;
   }
 
-  .dark .card-integrante-nome {
-    color: #e5e5e5;
-  }
-
-  .dark .card-integrante-info {
-    color: #cccccc;
-  }
-
-  /* ============================
-        DARK MODE
-============================ */
-
-  .dark .card-integrante {
-    background: rgba(20, 20, 20, 0.40);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-
-  .dark .card-integrante:hover {
-    background: rgba(20, 20, 20, 0.50);
+  .dark .card-integrante-foto {
+    border-color: #1EC88A88;
+    box-shadow: 0 0 12px #1EC88A44;
   }
 
   .dark .card-integrante-nome {
@@ -550,9 +678,16 @@
   }
 
   .dark .card-integrante-link {
-    background-color: #1ec88a;
+    background-color: #1EC88A;
     color: #0f0f0f;
   }
+
+  .dark .card-integrante-link:hover {
+    background-color: #18ffb0;
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px #1EC88A;
+  }
+
 
   /* ====================================
       SOBRE – DINÂMICO & MINIMALISTA

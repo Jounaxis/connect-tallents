@@ -10,9 +10,8 @@ export default function Integrantes() {
 
             <h1 className="home-titulo">Nossos Integrantes</h1>
 
-            <div className="home-cards">
+            <div className="integrantes-cards">
 
-                {/* Integrante 1 */}
                 {membros.map((membro) => (
                     <CardIntegrante key={membro.rm} {...membro} />
                 ))}
