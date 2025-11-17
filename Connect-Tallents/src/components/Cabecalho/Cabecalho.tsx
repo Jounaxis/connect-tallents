@@ -14,6 +14,7 @@ export default function Cabecalho() {
 
                 <nav className="cabecalho_nav">
                     <Link to="/" className="cabecalho_link">Home</Link>
+                    <Link to="/global" className="cabecalho_link">Global</Link>
                 </nav>
 
 
