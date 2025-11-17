@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-
-type CardNeonProps = {
-  titulo: string;
-  texto: string;
-  link: string;
-  icon: React.ReactNode;
-};
+import { CardNeonProps } from "../../types/CardProps";
 
 export default function CardNeon({ titulo, texto, link, icon }: CardNeonProps) {
   return (

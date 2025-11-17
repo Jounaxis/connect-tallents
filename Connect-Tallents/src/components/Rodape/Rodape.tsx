@@ -5,7 +5,9 @@ export default function Rodape() {
     <footer className="rodape-minimalista">
 
       <nav className="rodape_links">
-        <Link to="/" className="rodape_link">Home</Link>
+        <Link to="/integrantes" className="cabecalho_link">Integrantes</Link>
+        <Link to="/sobre" className="cabecalho_link">Sobre</Link>
+        <Link to="/contato" className="cabecalho_link">Contato</Link>
       </nav>
 
       <div className="rodape_copy">

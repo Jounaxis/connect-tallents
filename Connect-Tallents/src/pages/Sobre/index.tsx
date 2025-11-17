@@ -1,5 +1,5 @@
 import BackgroundNeon from "../../components/Background/Background";
-import { sobreSecoes } from "../../data/SobreSecoes";
+import { sobreSecoes } from "../../data/sobreSecoes";
 
 export default function Sobre() {
     return (
