@@ -5,6 +5,7 @@ import Error from "../pages/Error";
 import Integrantes from "../pages/Integrantes";
 import Sobre from "../pages/Sobre";
 import Contato from "../pages/Contato";
+import Global from "../pages/Global";
 
 export const routes = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ export const routes = createBrowserRouter([
             {
                 path: "/contato",
                 element: <Contato />
+            }
+            ,
+            {
+                path: "/global",
+                element: <Global />
             }
         ]
     }
