@@ -17,7 +17,7 @@ export default function Cabecalho() {
                     <Link to="/global" className="cabecalho_link">Global</Link>
                     <Link to="/colaboracao" className="cabecalho_link">Colaboração</Link>
                     <Link to="/experiencia" className="cabecalho_link">Experiencia</Link>
-                    
+                    <Link to="/preparacao" className="cabecalho_link">Preparação</Link>
                 </nav>
 
 

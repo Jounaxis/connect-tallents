@@ -1548,4 +1548,167 @@
     color: #ffe27a;
   }
 
+  /* =============================
+      TRILHAS
+============================= */
+
+  .prep-trilhas {
+    @apply w-full max-w-6xl grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .trilha-card {
+    @apply p-5 rounded-2xl backdrop-blur-xl text-center cursor-pointer transition-all border;
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(30, 200, 138, 0.25);
+  }
+
+  .trilha-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(30, 200, 138, 0.25);
+  }
+
+  .dark .trilha-card {
+    background: rgba(20, 20, 20, 0.45);
+    border-color: #1ec88a55;
+    color: #eaeaea;
+  }
+
+  /* =============================
+      FILTROS
+============================= */
+
+  .prep-filtros {
+    @apply flex gap-4 mt-6 mb-4 justify-center;
+  }
+
+  .prep-filtros button {
+    @apply px-4 py-2 rounded-xl font-medium transition-all border;
+    background: rgba(255, 255, 255, 0.45);
+    border-color: rgba(30, 200, 138, 0.25);
+    color: var(--texto-escuro);
+  }
+
+  .prep-filtros button:hover {
+    box-shadow: 0 0 10px #1ec88a66;
+  }
+
+  .prep-filtros .ativo {
+    background: var(--verde-metalico-principal);
+    color: white;
+    border-color: transparent;
+  }
+
+  .dark .prep-filtros button {
+    background: rgba(20, 20, 20, 0.45);
+    color: #eaeaea;
+  }
+
+  /* =============================
+      LISTA DE TAREFAS
+============================= */
+
+  .prep-tarefas {
+    @apply w-full max-w-5xl flex flex-col gap-6 mt-4;
+  }
+
+  /* CARD TAREFA */
+
+  .tarefa-card {
+    @apply p-5 rounded-2xl backdrop-blur-xl transition-all border;
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(30, 200, 138, 0.25);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.05);
+  }
+
+  .tarefa-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(30, 200, 138, 0.25);
+  }
+
+  .tarefa-header {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .tarefa-desc {
+    @apply text-sm mt-2;
+    color: var(--texto-medio);
+  }
+
+  .tarefa-info {
+    @apply text-xs mt-3 flex flex-col gap-1;
+    color: var(--texto-medio);
+  }
+
+  /* STATUS CORES */
+
+  .status {
+    @apply px-3 py-1 rounded-xl text-xs font-semibold;
+  }
+
+  .status.iniciada {
+    background: #ffd24d33;
+    color: #a77600;
+  }
+
+  .status.em-andamento {
+    background: #4da6ff33;
+    color: #005bb5;
+  }
+
+  .status.encerrada {
+    background: #82e0aa33;
+    color: #0b8e38;
+  }
+
+  .status.ativa {
+    background: #bb8ef133;
+    color: #6c2eb9;
+  }
+
+  /* DARK MODE */
+
+  .dark .tarefa-card {
+    background: rgba(20, 20, 20, 0.45);
+    border-color: #1ec88a55;
+    color: #eaeaea;
+  }
+
+  .dark .tarefa-desc,
+  .dark .tarefa-info {
+    color: #cfcfcf;
+  }
+
+  /* =============================
+      SKELETON
+============================= */
+
+  .tarefa-carrega {
+    @apply p-5 rounded-2xl backdrop-blur-xl border;
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(30, 200, 138, 0.25);
+  }
+
+  .tarefa-carrega-header {
+    @apply flex justify-between;
+  }
+
+  .tarefa-carrega-body {
+    @apply mt-3 flex flex-col gap-2;
+  }
+
+  .tarefa-carrega-line {
+    @apply animate-pulse h-4 rounded-full;
+    background: #d8d8d8;
+  }
+
+  .dark .tarefa-carrega {
+    background: rgba(20, 20, 20, 0.35);
+    border-color: #1ec88a55;
+  }
+
+  .dark .tarefa-carrega-line {
+    background: #3a3a3a;
+  }
+
 }

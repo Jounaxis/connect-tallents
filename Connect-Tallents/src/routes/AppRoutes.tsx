@@ -8,6 +8,7 @@ import Contato from "../pages/Contato";
 import Global from "../pages/Global";
 import Colaboracao from "../pages/Colaboracao";
 import Experiencia from "../pages/Experiencia";
+import Preparacao from "../pages/Preparacao";
 
 export const routes = createBrowserRouter([
     {
@@ -48,6 +49,11 @@ export const routes = createBrowserRouter([
             {
                 path: "/experiencia",
                 element: <Experiencia />
+            }
+            ,
+            {
+                path: "/preparacao",
+                element: <Preparacao />
             }
         ]
     }
