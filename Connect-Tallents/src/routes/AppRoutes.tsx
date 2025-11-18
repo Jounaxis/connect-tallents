@@ -5,6 +5,10 @@ import Error from "../pages/Error";
 import Integrantes from "../pages/Integrantes";
 import Sobre from "../pages/Sobre";
 import Contato from "../pages/Contato";
+import Global from "../pages/Global";
+import Colaboracao from "../pages/Colaboracao";
+import Experiencia from "../pages/Experiencia";
+import Preparacao from "../pages/Preparacao";
 
 export const routes = createBrowserRouter([
     {
@@ -30,6 +34,26 @@ export const routes = createBrowserRouter([
             {
                 path: "/contato",
                 element: <Contato />
+            }
+            ,
+            {
+                path: "/global",
+                element: <Global />
+            }
+            ,
+            {
+                path: "/colaboracao",
+                element: <Colaboracao />
+            }
+            ,
+            {
+                path: "/experiencia",
+                element: <Experiencia />
+            }
+            ,
+            {
+                path: "/preparacao",
+                element: <Preparacao />
             }
         ]
     }
