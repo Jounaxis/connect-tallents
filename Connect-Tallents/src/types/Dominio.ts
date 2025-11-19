@@ -1,5 +1,15 @@
 export type StatusTarefa = "Iniciada" | "Em andamento" | "Encerrada" | "Ativa";
 
+export type MensagemComUsuario = Mensagem & {
+    usuario?: {
+        codigo: number;
+        nome: string;
+        email: string;
+        foto?: string;
+        avatar?: string;
+    } | null;
+};
+
 export interface Usuario {
     codigo: number;
     nome: string;
@@ -10,22 +20,24 @@ export interface Usuario {
     habilidade: string;
     dataCadastro: string;
     foto?: string;
+    avatar?: string;
 }
 
-export interface Mensagem {
+export type Mensagem = {
     codigo: number;
     conteudo: string;
     dataEnvio: string;
     idUsuario: number;
-    idProjeto?: number;
-    usuario?: Usuario | null;
-}
+    idProjeto: number;
+};
 
 export interface Avaliacao {
-    cdUsuario: number;
-    cdProjeto: number;
-    ntAvaliacao: number;
-    dsComentario: string;
+    codigo?: number;
+    nota: number;
+    comentario: string;
+    dataAvaliacao: string;
+    idUsuario?: number;
+    idProjeto?: number;
 }
 
 export interface Projeto {

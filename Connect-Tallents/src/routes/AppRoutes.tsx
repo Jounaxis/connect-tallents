@@ -9,6 +9,8 @@ import Global from "../pages/Global";
 import Colaboracao from "../pages/Colaboracao";
 import Experiencia from "../pages/Experiencia";
 import Preparacao from "../pages/Preparacao";
+import Login from "../pages/Login";
+import Cadastro from "../pages/Cadastro";
 
 export const routes = createBrowserRouter([
     {
@@ -54,6 +56,16 @@ export const routes = createBrowserRouter([
             {
                 path: "/preparacao",
                 element: <Preparacao />
+            }
+            ,
+            {
+                path: "/login",
+                element: <Login />
+            }
+            ,
+            {
+                path: "/cadastro",
+                element: <Cadastro />
             }
         ]
     }

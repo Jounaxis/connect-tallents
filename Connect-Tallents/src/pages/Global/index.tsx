@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { endpoints } from "../../services/endpoint";
-import { Usuario, Mensagem } from "../../types/Dominio";
+import { Usuario, MensagemComUsuario } from "../../types/Dominio";
 
 import BackgroundNeon from "../../components/Background/Background";
 import PostCriar from "../../components/PostCriar/PostCriar";
@@ -9,23 +9,49 @@ import UsersSideBar from "../../components/UsersSideBar/UsersSideBar";
 import PostCarregamento from "../../components/Carregamento/Carregamento";
 import Tendencias from "../../components/Tendencias/Tendencias";
 
+import { useAuth } from "../../context/AuthContext";
+
 export default function Global() {
+
+    const { usuario } = useAuth(); // <-- AQUI! FUNDAMENTAL
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-    const [posts, setPosts] = useState<Mensagem[]>([]);
+    const [posts, setPosts] = useState<MensagemComUsuario[]>([]);
     const [carregando, setCarregando] = useState(true);
 
     // === CRIAR POST ===
     async function criarPost(conteudo: string) {
-        const novo = await endpoints.criarMensagem({
-            conteudo,
-            idUsuario: 1, // * alterar depois para usuário logado
-            dataEnvio: new Date().toISOString()
-        });
+        if (!usuario) {
+            alert("Você precisa estar logado para postar.");
+            return;
+        }
 
-        setPosts([novo, ...posts]);
+        try {
+            const novo = await endpoints.criarMensagem({
+                conteudo,
+                dataEnvio: new Date().toISOString(),
+                idUsuario: usuario.id,   // <--- AGORA FUNCIONA
+                idProjeto: 9             // <--- seu exemplo usa projeto 9
+            });
+            const postComUsuario: MensagemComUsuario = {
+                ...novo,
+                usuario: {
+                    codigo: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    avatar: usuario.foto ?? ""
+                }
+            };
+
+
+
+            setPosts((prev) => [postComUsuario, ...prev]);
+
+        } catch (err) {
+            console.error("ERRO AO CRIAR POST:", err);
+        }
     }
 
-    // === CARREGAR TUDO ===
+    // === CARREGAR DADOS ===
     useEffect(() => {
         async function carregarTudo() {
             try {
@@ -47,7 +73,6 @@ export default function Global() {
                 }));
 
                 setPosts(mensagensComNomes);
-
             } catch (error) {
                 console.error("Erro ao carregar dados:", error);
             } finally {
@@ -57,7 +82,6 @@ export default function Global() {
 
         carregarTudo();
     }, []);
-
 
     return (
         <main className="global-container">

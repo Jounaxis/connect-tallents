@@ -6,11 +6,6 @@ export default function Tendencias() {
             <h3>Tendências</h3>
 
             <div className="tendencia-item">
-                <FiTrendingUp className="tendencia-icon" />
-                Colaborações em Alta
-            </div>
-
-            <div className="tendencia-item">
                 <FiUsers className="tendencia-icon" />
                 <Link to="/colaboracao">Projetos Ativos</Link>
             </div>
@@ -22,7 +17,7 @@ export default function Tendencias() {
 
             <div className="tendencia-item">
                 <FiTarget className="tendencia-icon" />
-                Habilidades em destaque
+                <Link to="/experiencia">Avaliação</Link>
             </div>
         </aside>
     );

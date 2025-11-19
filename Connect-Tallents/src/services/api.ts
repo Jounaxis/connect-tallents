@@ -28,7 +28,9 @@ export const api = {
     },
 
     delete: async <T>(endpoint: string): Promise<T> => {
-        const response = await fetch(`${BASE_URL}${endpoint}`, { method: "DELETE" });
+        const response = await fetch(`${BASE_URL}${endpoint}`, {
+            method: "DELETE",
+        });
         if (!response.ok) throw new Error("Erro na requisição DELETE");
         return response.json() as Promise<T>;
     },
