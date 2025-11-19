@@ -13,12 +13,11 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Global() {
 
-    const { usuario } = useAuth(); // <-- AQUI! FUNDAMENTAL
+    const { usuario } = useAuth(); 
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [posts, setPosts] = useState<MensagemComUsuario[]>([]);
     const [carregando, setCarregando] = useState(true);
 
-    // === CRIAR POST ===
     async function criarPost(conteudo: string) {
         if (!usuario) {
             alert("Você precisa estar logado para postar.");
@@ -29,8 +28,8 @@ export default function Global() {
             const novo = await endpoints.criarMensagem({
                 conteudo,
                 dataEnvio: new Date().toISOString(),
-                idUsuario: usuario.id,   // <--- AGORA FUNCIONA
-                idProjeto: 9             // <--- seu exemplo usa projeto 9
+                idUsuario: usuario.id,   
+                idProjeto: 9            
             });
             const postComUsuario: MensagemComUsuario = {
                 ...novo,
@@ -38,7 +37,7 @@ export default function Global() {
                     codigo: usuario.id,
                     nome: usuario.nome,
                     email: usuario.email,
-                    avatar: usuario.foto ?? ""
+                    foto: usuario.foto ?? ""
                 }
             };
 
@@ -51,7 +50,6 @@ export default function Global() {
         }
     }
 
-    // === CARREGAR DADOS ===
     useEffect(() => {
         async function carregarTudo() {
             try {
@@ -104,7 +102,20 @@ export default function Global() {
                         </>
                     ) : (
                         posts.map((p) => (
-                            <PostItem key={p.codigo} post={p} />
+                            <PostItem
+                                key={p.codigo}
+                                post={p}
+                                podeExcluir={usuario?.id === p.idUsuario}
+                                onExcluir={async (id) => {
+                                    try {
+                                        await endpoints.deletarMensagem(id);
+                                        setPosts((prev) => prev.filter((post) => post.codigo !== id));
+                                    } catch (error) {
+                                        console.error("Erro ao deletar post:", error);
+                                        alert("Não foi possível excluir o post.");
+                                    }
+                                }}
+                            />
                         ))
                     )}
                 </div>

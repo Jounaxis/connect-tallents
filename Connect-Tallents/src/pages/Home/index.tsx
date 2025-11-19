@@ -1,7 +1,6 @@
 import Background from "../../components/Background/Background";
 import CardNeon from "../../components/CardNeon/CardNeon";
 
-// ÍCONES
 import { FiGlobe, FiUsers, FiBriefcase, FiTarget } from "react-icons/fi";
 
 export default function Home() {

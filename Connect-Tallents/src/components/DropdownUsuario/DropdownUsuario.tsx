@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import GenericAvatar from "../AvatarGenerico/AvatarGenerico";
 
 type Coords = {
     top: number;
@@ -12,9 +13,8 @@ export default function DropdownUsuario() {
     const [aberto, setAberto] = useState(false);
     const [coords, setCoords] = useState<Coords | null>(null);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
-    const avatarRef = useRef<HTMLImageElement | null>(null);
+    const avatarRef = useRef<HTMLDivElement | null>(null);
 
-    // Fecha ao clicar fora
     useEffect(() => {
         function handleClick(event: MouseEvent) {
             if (
@@ -29,14 +29,13 @@ export default function DropdownUsuario() {
         return () => document.removeEventListener("mousedown", handleClick);
     }, []);
 
-    // Calcula posição do dropdown quando abrir
     useEffect(() => {
         if (aberto && avatarRef.current) {
             const rect = avatarRef.current.getBoundingClientRect();
 
             setCoords({
-                top: rect.bottom + 12, // 12px abaixo do avatar
-                right: window.innerWidth - rect.right, // encosta no lado direito do avatar
+                top: rect.bottom + 12,
+                right: window.innerWidth - rect.right, 
             });
         }
     }, [aberto]);
@@ -45,16 +44,19 @@ export default function DropdownUsuario() {
 
     return (
         <div ref={wrapperRef} className="relative">
-            {/* AVATAR */}
-            <img
+
+            <div
                 ref={avatarRef}
-                src={usuario.avatar}
-                alt="Avatar"
                 className="cabecalho_user_avatar"
                 onClick={() => setAberto((prev) => !prev)}
-            />
+            >
+                {usuario.foto ? (
+                    <img src={usuario.foto} alt={usuario.nome} />
+                ) : (
+                    <GenericAvatar />
+                )}
+            </div>
 
-            {/* DROPDOWN */}
             {aberto && coords && (
                 <div
                     className="dropdown-menu fixed"

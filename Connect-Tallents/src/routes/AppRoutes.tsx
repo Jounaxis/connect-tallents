@@ -11,6 +11,7 @@ import Experiencia from "../pages/Experiencia";
 import Preparacao from "../pages/Preparacao";
 import Login from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
+import Perfil from "../pages/Perfil";
 
 export const routes = createBrowserRouter([
     {
@@ -66,6 +67,11 @@ export const routes = createBrowserRouter([
             {
                 path: "/cadastro",
                 element: <Cadastro />
+            }
+            ,
+            {
+                path: "/perfil",
+                element: <Perfil />
             }
         ]
     }

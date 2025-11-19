@@ -10,7 +10,7 @@ export default function Cadastro() {
         email: "",
         pais: "",
         idioma: "",
-        tipoUsuario: "Membro",
+        tipoUsuario: "Profissional", 
         habilidade: "",
     });
 
@@ -105,7 +105,7 @@ export default function Cadastro() {
                             value={form.tipoUsuario}
                             onChange={handleChange}
                         >
-                            <option value="Membro">Membro</option>
+                            <option value="Profissional">Profissional</option>
                             <option value="Mentor">Mentor</option>
                             <option value="Admin">Admin</option>
                         </select>

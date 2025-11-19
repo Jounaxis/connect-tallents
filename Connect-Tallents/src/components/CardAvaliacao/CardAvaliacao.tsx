@@ -1,6 +1,5 @@
-// src/components/CardAvaliacao/CardAvaliacao.tsx
-
 import { Usuario } from "../../types/Dominio";
+import GenericAvatar from "../AvatarGenerico/AvatarGenerico";
 
 type AvaliacaoUI = {
     nota?: number;
@@ -8,7 +7,6 @@ type AvaliacaoUI = {
     dataAvaliacao?: string;
     idProjeto?: number;
     usuario?: Usuario | null;
-    // permite qualquer outra chave que venha do backend
     [key: string]: any;
 };
 
@@ -23,7 +21,6 @@ export default function CardAvaliacao({ avaliacao }: Props) {
     const pais = (usuario as any)?.pais ?? "Mundo";
     const tipoUsuario = (usuario as any)?.tipoUsuario ?? "Membro";
 
-    // pega a data de forma segura (evita erro do TS)
     const rawDate =
         avaliacao.dataAvaliacao ??
         (avaliacao as any).data ??
@@ -38,17 +35,13 @@ export default function CardAvaliacao({ avaliacao }: Props) {
 
     return (
         <article className="experiencia-card">
-            {/* HEADER */}
             <header className="experiencia-header">
                 <div className="experiencia-avatar">
-                    <img
-                        src={
-                            (usuario as any)?.foto ??
-                            `https://api.dicebear.com/7.x/bottts/svg?seed=${nome}`
-                        }
-                        alt={nome}
-                        className="experiencia-avatar"
-                    />
+                    {usuario?.foto ? (
+                        <img src={usuario.foto} alt={nome} />
+                    ) : (
+                        <GenericAvatar />
+                    )}
                 </div>
 
                 <div className="experiencia-header-info">
@@ -67,7 +60,6 @@ export default function CardAvaliacao({ avaliacao }: Props) {
                 </div>
             </header>
 
-            {/* CONTEÚDO */}
             <p className="experiencia-content">{avaliacao.comentario}</p>
         </article>
     );

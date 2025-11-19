@@ -44,14 +44,12 @@ export default function Preparacao() {
 
             <h1 className="global-titulo">Preparação Profissional</h1>
 
-            {/* → TRILHAS */}
             <section className="prep-trilhas">
                 {trilhas.map((t, i) => (
                     <CardTrilha key={i} titulo={t.titulo} desc={t.desc} />
                 ))}
             </section>
 
-            {/* → FILTRO */}
             <div className="prep-filtros">
                 <button className={filtroArea === "TODAS" ? "ativo" : ""} onClick={() => setFiltroArea("TODAS")}>Todas</button>
                 <button className={filtroArea === "Back-End" ? "ativo" : ""} onClick={() => setFiltroArea("Back-End")}>Back-End</button>
@@ -59,7 +57,6 @@ export default function Preparacao() {
                 <button className={filtroArea === "Soft Skills" ? "ativo" : ""} onClick={() => setFiltroArea("Soft Skills")}>Soft Skills</button>
             </div>
 
-            {/* → LISTA DE TAREFAS */}
             <section className="prep-tarefas">
 
                 {carregando && (

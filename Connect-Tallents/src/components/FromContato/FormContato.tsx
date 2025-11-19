@@ -35,7 +35,6 @@ export default function FormContato({
             <h2 className="contato-form-titulo">{titulo}</h2>
             <p className="contato-form-descricao">{descricao}</p>
 
-            {/* Nome */}
             <div className="contato-input-container">
                 <label>Nome</label>
                 <input
@@ -49,7 +48,6 @@ export default function FormContato({
                 />
             </div>
 
-            {/* Email */}
             <div className="contato-input-container">
                 <label>Email</label>
                 <input
@@ -63,7 +61,6 @@ export default function FormContato({
                 />
             </div>
 
-            {/* Mensagem */}
             <div className="contato-input-container">
                 <label>Mensagem</label>
                 <textarea
@@ -76,7 +73,6 @@ export default function FormContato({
                 ></textarea>
             </div>
 
-            {/* Botão */}
             <button type="submit" className="contato-botao">
                 Enviar Feedback
             </button>

@@ -1,13 +1,7 @@
 export type StatusTarefa = "Iniciada" | "Em andamento" | "Encerrada" | "Ativa";
 
 export type MensagemComUsuario = Mensagem & {
-    usuario?: {
-        codigo: number;
-        nome: string;
-        email: string;
-        foto?: string;
-        avatar?: string;
-    } | null;
+    usuario?: Partial<Usuario> | null;
 };
 
 export interface Usuario {

@@ -21,9 +21,6 @@ export default function CriarAvaliacao({ onAvaliar }: Props) {
     const [projetos, setProjetos] = useState<Projeto[]>([]);
     const [carregando, setCarregando] = useState(true);
 
-    // ===============================
-    // Carregar projetos que o usuário participa
-    // ===============================
     useEffect(() => {
         async function carregar() {
             try {
@@ -71,22 +68,19 @@ export default function CriarAvaliacao({ onAvaliar }: Props) {
     }
 
     return (
-        <div className="post-criar experiencia-criar shadow-lg rounded-2xl border border-[var(--verde-metalico-translucido)] p-6">
+        <div className="post-criar experiencia-criar shadow-lg rounded-2xl p-6">
 
-            {/* Título */}
             <div className="mb-4">
-                <h2 className="text-xl font-bold text-[var(--branco-principal)] drop-shadow">
+                <h2 className="exp-titulo">
                     Compartilhe sua experiência
                 </h2>
-                <p className="text-sm text-[var(--texto-medio)] mt-1">
+                <p className="exp-subtitulo">
                     Avalie um projeto que você participou e ajude outros profissionais.
                 </p>
             </div>
 
-            {/* Campos */}
             <div className="space-y-4">
 
-                {/* SELECT DE PROJETOS */}
                 <div>
                     <label className="exp-label">Projeto</label>
 
@@ -107,7 +101,6 @@ export default function CriarAvaliacao({ onAvaliar }: Props) {
                     )}
                 </div>
 
-                {/* SLIDER */}
                 <div>
                     <label className="exp-label">Nota (0 a 10)</label>
 
@@ -126,7 +119,6 @@ export default function CriarAvaliacao({ onAvaliar }: Props) {
                 </div>
             </div>
 
-            {/* Comentário */}
             <textarea
                 className="post-criar-input mt-4"
                 placeholder="Conte como foi sua experiência colaborando nesse projeto..."
@@ -134,7 +126,6 @@ export default function CriarAvaliacao({ onAvaliar }: Props) {
                 onChange={(e) => setComentario(e.target.value)}
             />
 
-            {/* BOTÃO */}
             <button className="post-criar-btn mt-4" onClick={enviar}>
                 Enviar avaliação
             </button>

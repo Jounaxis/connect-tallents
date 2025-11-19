@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 export default function TrocarTema() {
   const [dark, setDark] = useState(false);
 
-  // Carregar tema salvo
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "dark") {

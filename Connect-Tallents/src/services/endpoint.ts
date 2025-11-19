@@ -2,7 +2,6 @@ import { api } from "./api";
 import { Usuario, Projeto, Tarefa, Mensagem, Avaliacao, Colaboracao } from "../types/Dominio";
 
 export const endpoints = {
-    // LISTAGENS
     listarUsuarios: () => api.get<Usuario[]>("/usuarios"),
     listarProjetos: () => api.get<Projeto[]>("/projetos"),
     listarTarefas: () => api.get<Tarefa[]>("/tarefas"),
@@ -10,7 +9,6 @@ export const endpoints = {
     listarAvaliacoes: () => api.get<Avaliacao[]>("/avaliacoes"),
     listarColaboracoes: () => api.get<Colaboracao[]>("/colaboracoes"),
 
-    // CRIAÇÃO
     criarUsuario: (data: Partial<Usuario>) =>
         api.post<Usuario>("/usuarios", data),
 
@@ -20,9 +18,17 @@ export const endpoints = {
     criarMensagem: (data: Partial<Mensagem>) =>
         api.post<Mensagem>("/mensagens", data),
 
+    deletarMensagem: (id: number) =>
+        api.delete<void>(`/mensagens/${id}`),
+
     criarColaboracao: (data: Partial<Colaboracao>) =>
         api.post<Colaboracao>("/colaboracoes", data),
 
     criarAvaliacao: (data: Partial<Avaliacao>) =>
         api.post<Avaliacao>("/avaliacoes", data),
+
+    obterUsuario: (id: number) => api.get<Usuario>(`/usuarios/${id}`),
+
+    atualizarUsuario: (id: number, data: Partial<Usuario>) =>
+        api.put<Usuario>(`/usuarios/${id}`, data),
 };

@@ -1,10 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Usuario = {
-    id: number;     
+    id: number;
     nome: string;
     email: string;
     foto?: string;
+    avatar?: string;
+    avatarFallback?: string;
+    avatarColor?: string;
 };
 
 type AuthContextType = {
@@ -19,19 +22,49 @@ const AuthContext = createContext<AuthContextType>({
     logout: () => { },
 });
 
+function getDefaultAvatar(nome: string) {
+    const initials = nome
+        .split(" ")
+        .filter(Boolean)
+        .map((parte) => parte[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
+
+    return {
+        initials,
+        color: "#1EC88A",
+    };
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [usuario, setUsuario] = useState<Usuario | null>(null);
 
     useEffect(() => {
         const salvo = localStorage.getItem("usuario");
         if (salvo) {
-            setUsuario(JSON.parse(salvo));
+            const dados = JSON.parse(salvo);
+            const info = getDefaultAvatar(dados.nome ?? "Usuário");
+            setUsuario({
+                ...dados,
+                avatarFallback: dados.avatarFallback ?? info.initials,
+                avatarColor: dados.avatarColor ?? info.color,
+            });
         }
     }, []);
 
     function login(user: Usuario) {
-        setUsuario(user);
-        localStorage.setItem("usuario", JSON.stringify(user));
+        const info = getDefaultAvatar(user.nome);
+        const comAvatar = {
+            ...user,
+            foto: user.foto || "",
+            avatar: user.foto || "",
+            avatarFallback: info.initials,
+            avatarColor: info.color,
+        };
+
+        setUsuario(comAvatar);
+        localStorage.setItem("usuario", JSON.stringify(comAvatar));
     }
 
     function logout() {

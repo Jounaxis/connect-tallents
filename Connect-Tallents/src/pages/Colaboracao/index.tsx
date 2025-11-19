@@ -16,11 +16,9 @@ export default function Colaboracao() {
 
     const [carregando, setCarregando] = useState(true);
 
-    // === MODAL ===
     const [modalAberto, setModalAberto] = useState(false);
     const [projetoSelecionado, setProjetoSelecionado] = useState<Projeto | null>(null);
 
-    // === ABRIR MODAL ===
     async function abrirDetalhes(projeto: Projeto) {
         setProjetoSelecionado(projeto);
         setModalAberto(true);
@@ -33,7 +31,6 @@ export default function Colaboracao() {
         setTarefas(tarefasDoProjeto);
     }
 
-    // === CARREGAR DADOS ===
     useEffect(() => {
         async function carregar() {
             try {
@@ -79,10 +76,8 @@ export default function Colaboracao() {
 
             <div className="global-layout">
 
-                {/* SIDEBAR */}
                 <UsersSideBar usuario={usuarios} />
 
-                {/* FEED DE PROJETOS */}
                 <div className="colab-feed">
                     {carregando ? (
                         <>
@@ -101,11 +96,9 @@ export default function Colaboracao() {
                     )}
                 </div>
 
-                {/* TENDÊNCIAS */}
                 <Tendencias />
             </div>
 
-            {/* MODAL */}
             <ProjetoModal
                 open={modalAberto}
                 projeto={projetoSelecionado}

@@ -14,6 +14,9 @@ export const api = {
             body: JSON.stringify(body),
         });
         if (!response.ok) throw new Error("Erro na requisição POST");
+        if (response.status === 204 || response.headers.get("Content-Length") === "0") {
+            return undefined as T;
+        }
         return response.json() as Promise<T>;
     },
 
@@ -24,6 +27,9 @@ export const api = {
             body: JSON.stringify(body),
         });
         if (!response.ok) throw new Error("Erro na requisição PUT");
+        if (response.status === 204 || response.headers.get("Content-Length") === "0") {
+            return undefined as T;
+        }
         return response.json() as Promise<T>;
     },
 
@@ -32,6 +38,9 @@ export const api = {
             method: "DELETE",
         });
         if (!response.ok) throw new Error("Erro na requisição DELETE");
+        if (response.status === 204 || response.headers.get("Content-Length") === "0") {
+            return undefined as T;
+        }
         return response.json() as Promise<T>;
     },
 };

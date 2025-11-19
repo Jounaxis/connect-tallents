@@ -6,7 +6,6 @@ export default function CardNeon({ titulo, texto, link, icon }: CardNeonProps) {
     <Link to={link} className="card-neon-horizontal">
       <div className="card-neon-content">
 
-        {/* ÍCONE CIRCULAR */}
         <div className="card-neon-icone">
           {icon}
         </div>

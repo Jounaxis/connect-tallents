@@ -1,17 +1,8 @@
-// ==========================
-// IMPORTS DAS IMAGENS
-// ==========================
-
 import imgSecao1 from "../assets/img/photo-secao-1.jpg"; 
 import imgSecao2 from "../assets/img/photo-secao-2.jpg";  
 import imgSecao3 from "../assets/img/photo-secao-3.jpg"; 
 import imgSecao4 from "../assets/img/photo-secao-4.jpg";  
 import imgSecao5 from "../assets/img/photo-secao-5.jpg"; 
-
-
-// ==========================
-// DADOS DAS SEÇÕES
-// ==========================
 
 export const sobreSecoes = [
     {

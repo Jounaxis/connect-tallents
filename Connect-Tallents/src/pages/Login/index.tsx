@@ -30,7 +30,7 @@ export default function Login() {
                 id: user.codigo,
                 nome: user.nome,
                 email: user.email,
-                avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${user.nome}`
+                foto: user.foto,
             });
 
             navigate("/");

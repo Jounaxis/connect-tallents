@@ -1,5 +1,3 @@
-// src/pages/Experiencia/Experiencia.tsx
-
 import { useEffect, useState } from "react";
 import { endpoints } from "../../services/endpoint";
 import { Usuario, Avaliacao } from "../../types/Dominio";
@@ -23,9 +21,6 @@ export default function Experiencia() {
     const [carregando, setCarregando] = useState(true);
     const { usuario } = useAuth();
 
-    // ==========================
-    // CARREGAR DADOS
-    // ==========================
     async function carregarTudo() {
         try {
             setCarregando(true);
@@ -63,9 +58,6 @@ export default function Experiencia() {
         carregarTudo();
     }, []);
 
-    // ==========================
-    // CRIAR AVALIAÇÃO
-    // ==========================
     async function criarAvaliacao(dados: {
         nota: number;
         comentario: string;
@@ -103,9 +95,6 @@ export default function Experiencia() {
         }
     }
 
-    // ==========================
-    // RENDER
-    // ==========================
     return (
         <main className="global-container">
             <BackgroundNeon />
@@ -116,7 +105,7 @@ export default function Experiencia() {
 
                 <UsersSideBar usuario={usuarios} />
 
-                <div className="global-feed">
+                <div className="global-feed experiencia-feed">
                     <CriarAvaliacao onAvaliar={criarAvaliacao} />
 
                     {carregando ? (

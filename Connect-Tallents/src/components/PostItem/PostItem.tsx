@@ -1,26 +1,27 @@
-import { FiThumbsUp, FiMessageCircle, FiShare2 } from "react-icons/fi";
-import { Mensagem } from "../../types/Dominio";
+import { FiThumbsUp, FiMessageCircle, FiShare2, FiTrash2 } from "react-icons/fi";
+import { MensagemComUsuario } from "../../types/Dominio";
+import AvatarGenerico from "../AvatarGenerico/AvatarGenerico";
 
 type PostItemProps = {
-    post: Mensagem;
+    post: MensagemComUsuario;
+    podeExcluir?: boolean;
+    onExcluir?: (id: number) => void;
 };
 
-export default function PostItem({ post }: PostItemProps) {
+export default function PostItem({ post, podeExcluir, onExcluir }: PostItemProps) {
     const usuario = post.usuario;
 
     return (
         <article className="post-item">
 
-            {/* Header do Post */}
             <header className="post-header">
-                <img
-                    src={
-                        usuario?.foto ||
-                        `https://api.dicebear.com/7.x/bottts/svg?seed=${usuario?.nome || "user"}`
-                    }
-                    alt={usuario?.nome}
-                    className="post-avatar"
-                />
+                <div className="post-avatar">
+                    {usuario?.foto ? (
+                        <img src={usuario.foto} alt={usuario?.nome} />
+                    ) : (
+                        <AvatarGenerico />
+                    )}
+                </div>
 
                 <div className="post-header-info">
                     <h3 className="post-user-name">
@@ -35,12 +36,20 @@ export default function PostItem({ post }: PostItemProps) {
                         {new Date(post.dataEnvio).toLocaleDateString("pt-BR")}
                     </span>
                 </div>
+                {podeExcluir && (
+                    <button
+                        className="post-delete-btn"
+                        onClick={() => onExcluir?.(post.codigo)}
+                        title="Excluir post"
+                        type="button"
+                    >
+                        <FiTrash2 size={16} />
+                    </button>
+                )}
             </header>
 
-            {/* Conteúdo */}
             <p className="post-content">{post.conteudo}</p>
 
-            {/* Ações */}
             <footer className="post-actions">
                 <button className="post-button">
                     <FiThumbsUp size={18} />
