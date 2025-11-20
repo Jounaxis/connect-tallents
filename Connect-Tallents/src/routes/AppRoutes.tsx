@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+﻿import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Error from "../pages/Error";
@@ -12,67 +12,26 @@ import Preparacao from "../pages/Preparacao";
 import Login from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
 import Perfil from "../pages/Perfil";
+import FAQ from "../pages/FAQ";
 
 export const routes = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <Error />,
-        children: [
-            {
-                path: "/",
-                element: <Home />
-            }
-            ,
-            {
-                path: "/integrantes",
-                element: <Integrantes />
-            }
-            ,
-            {
-                path: "/sobre",
-                element: <Sobre />
-            }
-            ,
-            {
-                path: "/contato",
-                element: <Contato />
-            }
-            ,
-            {
-                path: "/global",
-                element: <Global />
-            }
-            ,
-            {
-                path: "/colaboracao",
-                element: <Colaboracao />
-            }
-            ,
-            {
-                path: "/experiencia",
-                element: <Experiencia />
-            }
-            ,
-            {
-                path: "/preparacao",
-                element: <Preparacao />
-            }
-            ,
-            {
-                path: "/login",
-                element: <Login />
-            }
-            ,
-            {
-                path: "/cadastro",
-                element: <Cadastro />
-            }
-            ,
-            {
-                path: "/perfil",
-                element: <Perfil />
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/integrantes", element: <Integrantes /> },
+      { path: "/sobre", element: <Sobre /> },
+      { path: "/contato", element: <Contato /> },
+      { path: "/faq", element: <FAQ /> },
+      { path: "/global", element: <Global /> },
+      { path: "/colaboracao", element: <Colaboracao /> },
+      { path: "/experiencia", element: <Experiencia /> },
+      { path: "/preparacao", element: <Preparacao /> },
+      { path: "/login", element: <Login /> },
+      { path: "/cadastro", element: <Cadastro /> },
+      { path: "/perfil", element: <Perfil /> },
+    ],
+  },
+]);

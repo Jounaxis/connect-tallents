@@ -8,6 +8,7 @@ export default function Rodape() {
         <Link to="/integrantes" className="rodape_link">Integrantes</Link>
         <Link to="/sobre" className="rodape_link">Sobre</Link>
         <Link to="/contato" className="rodape_link">Contato</Link>
+        <Link to="/faq" className="rodape_link">FAQ</Link>
       </nav>
 
       <div className="rodape_copy">
