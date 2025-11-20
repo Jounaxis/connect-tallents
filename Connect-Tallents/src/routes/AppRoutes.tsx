@@ -13,6 +13,7 @@ import Login from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
 import Perfil from "../pages/Perfil";
 import FAQ from "../pages/FAQ";
+import Projeto from "../pages/Projeto";
 
 export const routes = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const routes = createBrowserRouter([
       { path: "/faq", element: <FAQ /> },
       { path: "/global", element: <Global /> },
       { path: "/colaboracao", element: <Colaboracao /> },
+      { path: "/projeto/:id", element: <Projeto /> },
       { path: "/experiencia", element: <Experiencia /> },
       { path: "/preparacao", element: <Preparacao /> },
       { path: "/login", element: <Login /> },

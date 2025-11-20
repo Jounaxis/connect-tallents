@@ -775,7 +775,8 @@
 
   .integrantes-cards {
     @apply w-full max-w-6xl mx-auto mt-12 grid gap-12 place-items-center;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+    justify-content: center;
   }
 
   /* Para manter os cards 100% alinhados no mobile também */
@@ -1862,19 +1863,44 @@
 
   .trilha-card {
     @apply p-5 rounded-2xl backdrop-blur-xl text-center cursor-pointer transition-all border;
-    background: var(--white-alpha-55);
-    border-color: var(--verde-overlay-25);
+    background: var(--white-alpha-35);
+    border-color: var(--sombra-difusa);
+    box-shadow: none;
+    color: var(--texto-medio);
+  }
+
+  .trilha-card h3 {
+    @apply text-lg font-semibold mb-2;
+    color: var(--texto-escuro);
+  }
+
+  .trilha-card p {
+    @apply text-sm leading-relaxed;
   }
 
   .trilha-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 30px var(--verde-overlay-25);
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px var(--verde-overlay-15);
+    border-color: var(--verde-overlay-25);
   }
 
   .dark .trilha-card {
-    background: var(--dark-alpha-45);
-    border-color: var(--verde-hex-55);
-    color: var(--cinza-150);
+    background: var(--dark-alpha-35);
+    border-color: var(--white-alpha-12);
+    box-shadow: none;
+    color: var(--cinza-450);
+  }
+
+  .dark .trilha-card h3 {
+    color: var(--cinza-125);
+  }
+
+  .dark .trilha-card p {
+    color: var(--cinza-400);
+  }
+
+  .dark .trilha-card:hover {
+    box-shadow: 0 0 14px var(--verde-overlay-25);
   }
 
   /* =============================
@@ -1882,29 +1908,55 @@
 ============================= */
 
   .prep-filtros {
-    @apply flex gap-4 mt-6 mb-4 justify-center;
+    @apply flex gap-4 mt-8 mb-6 justify-center flex-wrap;
+    padding: 0.9rem 1.1rem;
+    background: var(--white-alpha-65);
+    border-radius: 16px;
+    border: 1px solid var(--verde-overlay-25);
+    box-shadow: 0 12px 28px var(--sombra-padrao);
   }
 
   .prep-filtros button {
-    @apply px-4 py-2 rounded-xl font-medium transition-all border;
-    background: var(--white-alpha-45);
-    border-color: var(--verde-overlay-25);
-    color: var(--texto-escuro);
+    @apply px-5 py-3 rounded-full font-semibold transition-all border;
+    background: linear-gradient(135deg, var(--white-alpha-75), var(--white-alpha-45));
+    border-color: var(--verde-overlay-35);
+    color: var(--texto-escuro-intenso);
+    letter-spacing: 0.01em;
+    box-shadow: inset 0 1px 0 var(--white-alpha-55);
   }
 
   .prep-filtros button:hover {
-    box-shadow: 0 0 10px var(--verde-hex-66);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px var(--verde-overlay-25);
   }
 
   .prep-filtros .ativo {
-    background: var(--verde-metalico-principal);
-    color: white;
+    background: linear-gradient(135deg, var(--verde-metalico-principal), var(--verde-metalico-escuro));
+    color: var(--branco-principal);
     border-color: transparent;
+    box-shadow: 0 16px 32px var(--verde-overlay-30);
   }
 
   .dark .prep-filtros button {
     background: var(--dark-alpha-45);
     color: var(--cinza-150);
+    border-color: var(--verde-overlay-35);
+    box-shadow: inset 0 1px 0 var(--onyx-alpha-45);
+  }
+
+  .dark .prep-filtros {
+    background: var(--dark-alpha-40);
+    border-color: var(--verde-hex-55);
+    box-shadow: 0 10px 24px var(--graphite-alpha-40);
+  }
+
+  .dark .prep-filtros .ativo {
+    color: var(--branco-principal);
+    text-shadow: 0 0 6px var(--verde-hex-66);
+  }
+
+  .dark .prep-filtros button:hover {
+    box-shadow: 0 12px 26px var(--verde-overlay-30);
   }
 
   /* =============================
@@ -2586,10 +2638,10 @@
   position: relative;
   padding: 1.5rem;
   border-radius: 18px;
-  background: linear-gradient(140deg, rgba(24, 255, 176, 0.1), rgba(16, 24, 40, 0.6));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(24, 255, 176, 0.08));
+  border: 1px solid rgba(24, 255, 176, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
   overflow: hidden;
 }
 
@@ -2611,11 +2663,11 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0.5rem 0 0.25rem;
-  color: var(--branco-principal);
+  color: var(--texto-escuro);
 }
 
 .faq-card-top p {
-  color: var(--cinza-150);
+  color: var(--texto-medio);
   line-height: 1.5;
 }
 
@@ -2639,17 +2691,17 @@
 
 .faq-item {
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--verde-overlay-20);
 }
 
 .faq-pergunta {
   font-weight: 700;
   margin-bottom: 0.25rem;
-  color: var(--branco-principal);
+  color: var(--texto-escuro);
 }
 
 .faq-resposta {
-  color: var(--cinza-150);
+  color: var(--texto-medio);
   line-height: 1.55;
 }
 
@@ -2669,19 +2721,19 @@
   gap: 1rem;
   padding: 1.4rem 1.8rem;
   border-radius: 16px;
-  background: linear-gradient(120deg, rgba(24, 255, 176, 0.12), rgba(16, 24, 40, 0.8));
-  border: 1px solid rgba(24, 255, 176, 0.35);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(24, 255, 176, 0.15));
+  border: 1px solid rgba(24, 255, 176, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
 .faq-cta-title {
   font-size: 1.2rem;
   font-weight: 800;
-  color: var(--branco-principal);
+  color: var(--texto-escuro);
 }
 
 .faq-cta-desc {
-  color: var(--cinza-150);
+  color: var(--texto-medio);
   margin-top: 0.25rem;
 }
 
@@ -2710,7 +2762,7 @@
 }
 
 .faq-cta-link {
-  color: var(--verde-neon);
+  color: var(--texto-info);
   font-weight: 700;
 }
 
@@ -2792,9 +2844,12 @@
     flex-wrap: wrap;
   }
 
-  .home-cards,
-  .integrantes-cards {
+  .home-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .integrantes-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
   .global-layout {
@@ -2808,9 +2863,12 @@
     gap: 0.9rem;
   }
 
-  .home-cards,
-  .integrantes-cards {
+  .home-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .integrantes-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
   }
 
   .global-layout {
@@ -2825,9 +2883,12 @@
     gap: 1rem;
   }
 
-  .home-cards,
-  .integrantes-cards {
+  .home-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .integrantes-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
   }
 
   .global-layout {
@@ -2856,9 +2917,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .home-cards,
-  .integrantes-cards {
+  .home-cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .integrantes-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
   }
 }
 
@@ -2884,3 +2948,4 @@
     flex-wrap: wrap;
   }
 }
+

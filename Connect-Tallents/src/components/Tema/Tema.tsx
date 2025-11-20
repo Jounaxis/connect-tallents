@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react";
+﻿import { useTheme } from "../../context/ThemeContext";
 
 export default function TrocarTema() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      document.documentElement.classList.add("dark");
-      setDark(true);
-    }
-  }, []);
-
-  function ativarTema() {
-    const newTheme = !dark;
-
-    setDark(newTheme);
-
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }
+  const { tema, alternarTema } = useTheme();
+  const dark = tema === "dark";
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">
       <input
         type="checkbox"
         checked={dark}
-        onChange={ativarTema}
+        onChange={alternarTema}
         className="sr-only peer"
       />
 
@@ -39,7 +18,7 @@ export default function TrocarTema() {
           w-20 h-10 rounded-full
           bg-gradient-to-r from-yellow-300 to-orange-400
           peer-checked:from-blue-500 peer-checked:to-indigo-600
-          transition-all duration-500
+          transition-all duration-500 relative
 
           after:content-['☀️']
           peer-checked:after:content-['🌙']
@@ -47,7 +26,7 @@ export default function TrocarTema() {
           after:bg-white after:rounded-full after:h-8 after:w-8
           after:flex after:items-center after:justify-center
           after:transition-all after:duration-500
-          after:shadow-md after:text-lg
+          after:shadow-md after:text-lg after:font-semibold
 
           peer-checked:after:translate-x-10
         "
