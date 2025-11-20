@@ -1,4 +1,4 @@
-import { Tarefa } from "../../types/Dominio";
+﻿import { Tarefa } from "../../types/Dominio";
 
 type Props = {
     tarefa: Tarefa;

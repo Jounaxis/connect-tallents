@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { endpoints } from "../../services/endpoint";
 import { Tarefa } from "../../types/Dominio";
 
@@ -13,6 +13,8 @@ const trilhas = [
     { titulo: "Soft Skills", desc: "Comunicação, Trabalho em Equipe" },
     { titulo: "Carreira", desc: "Entrevistas, Portfólio, Networking" },
 ];
+
+const filtrosArea = ["TODAS", "Back-End", "Front-End", "Soft Skills"];
 
 export default function Preparacao() {
 
@@ -34,9 +36,9 @@ export default function Preparacao() {
         carregar();
     }, []);
 
-    const tarefasFiltradas = tarefas.filter(t =>
-        filtroArea === "TODAS" ? true : t.area === filtroArea
-    );
+    const tarefasFiltradas = filtroArea === "TODAS"
+        ? tarefas
+        : tarefas.filter((t) => t.area === filtroArea);
 
     return (
         <main className="global-container">
@@ -50,11 +52,16 @@ export default function Preparacao() {
                 ))}
             </section>
 
-            <div className="prep-filtros">
-                <button className={filtroArea === "TODAS" ? "ativo" : ""} onClick={() => setFiltroArea("TODAS")}>Todas</button>
-                <button className={filtroArea === "Back-End" ? "ativo" : ""} onClick={() => setFiltroArea("Back-End")}>Back-End</button>
-                <button className={filtroArea === "Front-End" ? "ativo" : ""} onClick={() => setFiltroArea("Front-End")}>Front-End</button>
-                <button className={filtroArea === "Soft Skills" ? "ativo" : ""} onClick={() => setFiltroArea("Soft Skills")}>Soft Skills</button>
+            <div className="prep-filtros" aria-label="Filtros por área">
+                {filtrosArea.map((filtro) => (
+                    <button
+                        key={filtro}
+                        className={filtroArea === filtro ? "ativo" : ""}
+                        onClick={() => setFiltroArea(filtro)}
+                    >
+                        {filtro === "TODAS" ? "Todas" : filtro}
+                    </button>
+                ))}
             </div>
 
             <section className="prep-tarefas">
