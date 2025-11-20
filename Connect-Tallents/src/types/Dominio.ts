@@ -41,6 +41,10 @@ export interface Projeto {
     usuario?: Usuario | null;
 }
 
+export type ProjetoComRelacionamentos = Projeto & {
+    colaboracao?: Colaboracao | null;
+};
+
 export interface Tarefa {
     codigo: number;
     nome: string;

@@ -1,8 +1,9 @@
-import { Projeto } from "../../types/Dominio";
+import { ProjetoComRelacionamentos } from "../../types/Dominio";
+import { Link } from "react-router-dom";
 
 type Props = {
-    projeto: Projeto;
-    onVerDetalhes: (projeto: Projeto) => void;
+    projeto: ProjetoComRelacionamentos;
+    onVerDetalhes: (projeto: ProjetoComRelacionamentos) => void;
 }
 
 export default function CardProjeto({ projeto, onVerDetalhes }: Props) {
@@ -24,6 +25,13 @@ export default function CardProjeto({ projeto, onVerDetalhes }: Props) {
             >
                 Ver Detalhes
             </button>
+
+            <Link
+                to={`/projeto/${projeto.codigo}`}
+                className="btn-detalhes mt-2 inline-block text-center"
+            >
+                Abrir página do projeto
+            </Link>
         </div>
     );
 }

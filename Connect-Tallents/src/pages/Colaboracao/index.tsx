@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { endpoints } from "../../services/endpoint";
-import { Usuario, Projeto, Tarefa, Colaboracao } from "../../types/Dominio";
+import { Usuario, ProjetoComRelacionamentos, Tarefa, Colaboracao } from "../../types/Dominio";
 
 import UsersSideBar from "../../components/UsersSideBar/UsersSideBar";
 import Tendencias from "../../components/Tendencias/Tendencias";
@@ -11,15 +11,15 @@ import ProjetoModal from "../../components/ModalProjeto/ModalProjeto";
 
 export default function Colaboracao() {
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-    const [projetos, setProjetos] = useState<Projeto[]>([]);
+    const [projetos, setProjetos] = useState<ProjetoComRelacionamentos[]>([]);
     const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
     const [carregando, setCarregando] = useState(true);
 
     const [modalAberto, setModalAberto] = useState(false);
-    const [projetoSelecionado, setProjetoSelecionado] = useState<Projeto | null>(null);
+    const [projetoSelecionado, setProjetoSelecionado] = useState<ProjetoComRelacionamentos | null>(null);
 
-    async function abrirDetalhes(projeto: Projeto) {
+    async function abrirDetalhes(projeto: ProjetoComRelacionamentos) {
         setProjetoSelecionado(projeto);
         setModalAberto(true);
 
