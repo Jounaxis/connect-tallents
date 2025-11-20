@@ -2737,6 +2737,131 @@
   color: var(--branco-principal);
 }
 
+/* ============================
+   RESPONSIVIDADE GLOBAL
+   Cobertura XS, SM, MD, LG, XL
+============================ */
+
+@media (max-width: 480px) {
+  /* XS */
+  .cabecalho_container {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .cabecalho_nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .home-container,
+  .sobre-dinamico-container,
+  .global-container,
+  .perfil-container,
+  .prep-tarefas,
+  .colab-feed {
+    padding: 1.5rem 1rem;
+  }
+
+  .home-cards,
+  .integrantes-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .global-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .faq-container {
+    padding: 2.5rem 1rem 3rem;
+  }
+
+  .prep-filtros {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+  /* SM */
+  .cabecalho_nav {
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .home-cards,
+  .integrantes-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .global-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  /* MD */
+  .cabecalho_nav {
+    gap: 0.9rem;
+  }
+
+  .home-cards,
+  .integrantes-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .global-layout {
+    grid-template-columns: 1fr;
+    max-width: 880px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* LG */
+  .cabecalho_nav {
+    gap: 1rem;
+  }
+
+  .home-cards,
+  .integrantes-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .global-layout {
+    grid-template-columns: 220px 1fr;
+    gap: 1.5rem;
+  }
+
+  .prep-trilhas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  /* XL */
+  .global-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .global-layout {
+    max-width: 1280px;
+    grid-template-columns: 260px 1fr 300px;
+  }
+
+  .faq-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-cards,
+  .integrantes-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .faq-container {
     padding: 3rem 1.25rem 3.5rem;
