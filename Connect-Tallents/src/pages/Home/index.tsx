@@ -28,7 +28,7 @@ export default function Home() {
 
                 <CardNeon
                     titulo="Colaboração"
-                    texto="Trabalhe remotamente em projetos reais com equipes diversas"
+                    texto="Trabalhe com equipes remotamente em projetos reais "
                     link="/colaboracao"
                     icon={<FiUsers />}
                 />
