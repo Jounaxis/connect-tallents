@@ -2,15 +2,25 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { endpoints } from "../../services/endpoint";
 import BackgroundNeon from "../../components/Background/Background";
+import { TIPOS_USUARIO, TipoUsuario } from "../../types/Dominio";
+
+type CadastroForm = {
+    nome: string;
+    email: string;
+    pais: string;
+    idioma: string;
+    tipoUsuario: TipoUsuario;
+    habilidade: string;
+};
 
 export default function Cadastro() {
     const navigate = useNavigate();
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<CadastroForm>({
         nome: "",
         email: "",
         pais: "",
         idioma: "",
-        tipoUsuario: "Profissional", 
+        tipoUsuario: TIPOS_USUARIO[0],
         habilidade: "",
     });
 
@@ -19,7 +29,12 @@ export default function Cadastro() {
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        const field = name as keyof CadastroForm;
+        if (field === "tipoUsuario") {
+            setForm((prev) => ({ ...prev, tipoUsuario: value as TipoUsuario }));
+            return;
+        }
+        setForm((prev) => ({ ...prev, [field]: value }));
     }
 
     async function handleSubmit(e: FormEvent) {
@@ -105,9 +120,11 @@ export default function Cadastro() {
                             value={form.tipoUsuario}
                             onChange={handleChange}
                         >
-                            <option value="Profissional">Profissional</option>
-                            <option value="Mentor">Mentor</option>
-                            <option value="Admin">Admin</option>
+                            {TIPOS_USUARIO.map((tipo) => (
+                                <option key={tipo} value={tipo}>
+                                    {tipo}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

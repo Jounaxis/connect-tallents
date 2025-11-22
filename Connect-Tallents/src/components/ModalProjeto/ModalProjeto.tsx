@@ -5,6 +5,8 @@ type ProjetoModalProps = {
     projeto: Projeto | null;
     tarefas: Tarefa[];
     onClose: () => void;
+    podeEditar?: boolean;
+    onEditarTarefa?: (tarefa: Tarefa) => void;
 };
 
 export default function ProjetoModal({
@@ -12,6 +14,8 @@ export default function ProjetoModal({
     projeto,
     tarefas,
     onClose,
+    podeEditar = false,
+    onEditarTarefa,
 }: ProjetoModalProps) {
     if (!open || !projeto) return null;
 
@@ -32,7 +36,18 @@ export default function ProjetoModal({
                     <div className="tarefa-lista">
                         {tarefas.map((t) => (
                             <div key={t.codigo} className="tarefa-item">
-                                <h4>{t.nome}</h4>
+                                <div className="tarefa-header">
+                                    <h4>{t.nome}</h4>
+                                    {podeEditar && (
+                                        <button
+                                            className="btn-detalhes"
+                                            onClick={() => onEditarTarefa?.(t)}
+                                            type="button"
+                                        >
+                                            Editar
+                                        </button>
+                                    )}
+                                </div>
                                 <p>{t.descricaoTarefa}</p>
                                 <span>Status: {t.status}</span>
                             </div>

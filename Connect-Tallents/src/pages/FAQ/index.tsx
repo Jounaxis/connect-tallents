@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import BackgroundNeon from "../../components/Background/Background";
 
 type FAQItem = {
@@ -8,141 +8,102 @@ type FAQItem = {
 
 type FAQBloco = {
   titulo: string;
-  tag: string;
-  descricao: string;
   perguntas: FAQItem[];
 };
 
 const blocos: FAQBloco[] = [
   {
     titulo: "Conta e acesso",
-    tag: "Autenticacao",
-    descricao: "Cadastro, login e uso do tema claro/escuro.",
     perguntas: [
       {
-        pergunta: "Como crio minha conta?",
+        pergunta: "Como criar uma conta?",
         resposta:
-          "Acesse Cadastro e preencha nome, email, pais, idioma, tipo de usuario e habilidade. Os dados sao enviados para a API e voce ja pode fazer login.",
+          "Clique em Cadastro, preencha nome e email e escolha seu perfil (Profissional, Estudante ou Empresa). Depois use o mesmo email para entrar.",
       },
       {
-        pergunta: "Preciso de senha para entrar?",
+        pergunta: "Preciso de senha?",
         resposta:
-          "O login busca seu email cadastrado na API. Basta informar o mesmo email usado no cadastro; os dados do usuario ficam salvos no localStorage apos autenticar.",
+          "Hoje o acesso é feito pelo email cadastrado. Após entrar, seus dados ficam salvos localmente para agilizar o próximo acesso.",
       },
       {
-        pergunta: "O tema claro/escuro afeta minha conta?",
+        pergunta: "Posso trocar a foto e dados?",
         resposta:
-          "Nao. O tema e salvo localmente e pode ser alternado pelo botao no cabecalho sem impactar seus dados.",
+          "Sim. Na página Perfil você edita nome, email, país, idioma, tipo de usuário e envia uma nova foto. Salve para atualizar.",
       },
     ],
   },
   {
-    titulo: "Feed Global",
-    tag: "Social",
-    descricao: "Posts, exclusao e carregamento de conteudo.",
+    titulo: "Feed e publicações",
     perguntas: [
       {
-        pergunta: "Preciso estar logado para postar?",
+        pergunta: "O que é o feed Global?",
         resposta:
-          "Sim. Apenas usuarios autenticados podem criar ou excluir posts. O feed publico carrega posts existentes mesmo para visitantes.",
+          "É a área pública de posts. Você vê conteúdo de outros usuários e, se estiver logado, pode publicar e excluir seus próprios posts.",
       },
       {
-        pergunta: "Como excluir um post meu?",
+        pergunta: "Como faço uma publicação?",
         resposta:
-          "Clique em Excluir no card do post. A acao envia um DELETE para o endpoint de mensagens e remove o item da lista local.",
+          "Entre no site, acesse o feed Global e use o campo de texto para postar. Somente usuários logados podem publicar.",
       },
       {
-        pergunta: "Por que vejo skeletons no feed?",
+        pergunta: "Consigo apagar um post meu?",
         resposta:
-          "Enquanto buscamos usuarios e mensagens na API, exibimos placeholders para evitar saltos de layout e sinalizar carregamento.",
+          "Sim. Seus posts mostram o botão de excluir. Ao confirmar, a publicação sai do feed.",
       },
     ],
   },
   {
-    titulo: "Projetos e colaboracao",
-    tag: "Projetos",
-    descricao: "Detalhes, tarefas e combinacao com colaboradores.",
+    titulo: "Projetos colaborativos",
     perguntas: [
       {
-        pergunta: "Como ver detalhes de um projeto?",
+        pergunta: "Como criar um projeto?",
         resposta:
-          "Na lista de Projetos Colaborativos, clique em Ver detalhes. Um modal mostra o autor, a colaboracao associada e as tarefas filtradas pelo projeto.",
+          "No menu Colaboração, use o card “Crie um novo projeto”. Informe o nome do projeto e salve. Ele aparece no topo da lista.",
       },
       {
-        pergunta: "Consigo mapear quem participa de cada projeto?",
+        pergunta: "O que é Ver Detalhes?",
         resposta:
-          "Sim. As colunas exibem o usuario dono do projeto e a colaboracao vinculada, alimentadas pelos endpoints de usuarios e colaboracoes.",
+          "Abre um resumo do projeto com autor e tarefas associadas. Use para entender o que está em andamento.",
       },
       {
-        pergunta: "As tarefas sao filtradas por projeto?",
+        pergunta: "Para que serve Adicionar detalhes?",
         resposta:
-          "Dentro do modal carregamos as tarefas e filtramos por codigo do projeto para exibir apenas atividades relevantes.",
+          "Permite registrar tarefas do projeto: nome, área, status (Iniciada, Em andamento, Encerrada ou Ativa) e datas. Assim você controla etapas e prazos.",
+      },
+      {
+        pergunta: "Posso excluir um projeto?",
+        resposta:
+          "Sim, apenas se você for o criador. Primeiro removemos as tarefas ligadas a ele e depois apagamos o projeto.",
       },
     ],
   },
   {
-    titulo: "Preparacao e trilhas",
-    tag: "Carreira",
-    descricao: "Trilhas sugeridas e tarefas por area.",
+    titulo: "Trilhas e preparação",
     perguntas: [
       {
-        pergunta: "Quais trilhas estao disponiveis?",
+        pergunta: "O que encontro na área de Preparação?",
         resposta:
-          "Exibimos quatro trilhas fixas: Back-End, Front-End, Soft Skills e Carreira, com foco em preparacao pratica.",
+          "Quatro trilhas fixas (Back-End, Front-End, Soft Skills e Carreira) com tarefas sugeridas para cada caminho.",
       },
       {
-        pergunta: "Como filtramos tarefas?",
+        pergunta: "Como filtro por área?",
         resposta:
-          "O filtro superior ajusta a lista pelo campo area das tarefas retornadas pela API (ou mostra todas quando selecionado Todas).",
-      },
-      {
-        pergunta: "Existe indicacao de carregamento?",
-        resposta:
-          "Sim. Enquanto as tarefas da API sao buscadas, exibimos skeletons dedicados para manter consistencia visual.",
+          "Use o filtro superior para mostrar apenas tarefas da área escolhida ou deixar em Todas para ver a lista completa.",
       },
     ],
   },
   {
-    titulo: "Perfil e dados",
-    tag: "Perfil",
-    descricao: "Edicao de informacoes e upload de avatar.",
+    titulo: "Suporte rápido",
     perguntas: [
       {
-        pergunta: "Onde altero meus dados?",
+        pergunta: "A página não carrega dados, o que faço?",
         resposta:
-          "Acesse a pagina Perfil. Os campos sao preenchidos com o usuario carregado via endpoint e apos salvar a aplicacao atualiza o contexto de sessao.",
+          "Verifique sua conexão e tente recarregar. Se persistir, pode ser instabilidade do servidor; tente novamente mais tarde.",
       },
       {
-        pergunta: "Posso trocar a foto?",
+        pergunta: "Onde falo com o time?",
         resposta:
-          "Sim. Selecione um arquivo de imagem; o preview aparece imediatamente e e enviado junto na atualizacao do usuario.",
-      },
-      {
-        pergunta: "E se eu sair da conta?",
-        resposta:
-          "O botao de sair limpa o usuario do contexto e do localStorage. Os dados continuam na API para novos logins.",
-      },
-    ],
-  },
-  {
-    titulo: "Suporte e integracoes",
-    tag: "Suporte",
-    descricao: "Ajuda rapida e integracao com a API Java.",
-    perguntas: [
-      {
-        pergunta: "A API esta fora do ar, o que fazer?",
-        resposta:
-          "Confirme a variavel VITE_URL_BASE no .env e se o servico Java no Render esta online. Sem a API, listas e autenticacao podem falhar.",
-      },
-      {
-        pergunta: "Como falo com o time?",
-        resposta:
-          "Use a pagina Contato para enviar mensagem ou consulte Integrantes para acessar GitHub e LinkedIn de cada membro.",
-      },
-      {
-        pergunta: "O deploy precisa de algo especial?",
-        resposta:
-          "O README lista o link de producao na Vercel e o link do repositorio. Suba o projeto sem node_modules e mantenha o historico Git.",
+          "Use a página Contato para enviar sua mensagem. Você também pode conhecer a equipe em Integrantes.",
       },
     ],
   },
@@ -157,7 +118,7 @@ export default function FAQ() {
         <span className="faq-chip">FAQ</span>
         <h1 className="faq-title">Perguntas frequentes</h1>
         <p className="faq-subtitle">
-          Dicas rapidas sobre acesso, feed, projetos, preparacao e suporte para a Connect Tallents.
+          Entenda rapidamente como criar conta, publicar no feed, montar projetos e usar as trilhas.
         </p>
       </header>
 
@@ -165,9 +126,7 @@ export default function FAQ() {
         {blocos.map((bloco) => (
           <article key={bloco.titulo} className="faq-card">
             <div className="faq-card-top">
-              <span className="faq-tag">{bloco.tag}</span>
               <h3>{bloco.titulo}</h3>
-              <p>{bloco.descricao}</p>
             </div>
 
             <div className="faq-lista">
@@ -185,9 +144,9 @@ export default function FAQ() {
       <section className="faq-cta">
         <div className="faq-cta-card">
           <div>
-            <p className="faq-cta-title">Ainda ficou com duvida?</p>
+            <p className="faq-cta-title">Ainda ficou com dúvida?</p>
             <p className="faq-cta-desc">
-              Fale conosco pela pagina de Contato ou conheca a equipe em Integrantes.
+              Fale conosco pela página de Contato ou conheça a equipe em Integrantes.
             </p>
           </div>
           <div className="faq-cta-actions">

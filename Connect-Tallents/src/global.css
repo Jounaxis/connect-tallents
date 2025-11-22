@@ -1471,6 +1471,19 @@
     background: var(--verde-metalico-principal);
   }
 
+  .btn-detalhes.danger {
+    background: rgba(255, 77, 77, 0.12);
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.35);
+  }
+
+  .btn-detalhes.danger:hover {
+    background: rgba(255, 77, 77, 0.25);
+    color: #ff8a8a;
+    transform: translateY(-2px);
+  }
+
   .btn-detalhes:hover {
     background: var(--verde-metalico-escuro);
   }

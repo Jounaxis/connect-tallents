@@ -14,6 +14,20 @@ export const endpoints = {
 
     criarProjeto: (data: Partial<Projeto>) =>
         api.post<Projeto>("/projetos", data),
+    atualizarProjeto: (id: number, data: Partial<Projeto>) =>
+        api.put<Projeto>(`/projetos/${id}`, data),
+    deletarProjeto: (id: number) =>
+        api.delete<void>(`/projetos/${id}`),
+    criarTarefa: (data: Partial<Tarefa>) =>
+        api.post<Tarefa>("/tarefas", data),
+    atualizarTarefa: (id: number, data: Partial<Tarefa>) =>
+        api.put<Tarefa>(`/tarefas/${id}`, data),
+    deletarTarefa: (id: number) =>
+        api.delete<void>(`/tarefas/${id}`),
+    deletarColaboracao: (id: number) =>
+        api.delete<void>(`/colaboracoes/${id}`),
+    deletarAvaliacao: (id: number) =>
+        api.delete<void>(`/avaliacoes/${id}`),
 
     criarMensagem: (data: Partial<Mensagem>) =>
         api.post<Mensagem>("/mensagens", data),

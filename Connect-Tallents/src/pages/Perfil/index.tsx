@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import BackgroundNeon from "../../components/Background/Background";
 import { endpoints } from "../../services/endpoint";
 import { useAuth } from "../../context/AuthContext";
-import { Usuario } from "../../types/Dominio";
+import { TIPOS_USUARIO, TipoUsuario, Usuario } from "../../types/Dominio";
 import GenericAvatar from "../../components/AvatarGenerico/AvatarGenerico";
 
 type PerfilForm = {
@@ -10,18 +10,20 @@ type PerfilForm = {
     email: string;
     pais: string;
     idioma: string;
-    tipoUsuario: string;
+    tipoUsuario: TipoUsuario;
     habilidade: string;
     foto?: string;
     dataCadastro: string;
 };
+
+const tipoUsuarioPadrao: TipoUsuario = TIPOS_USUARIO[0];
 
 const formInicial: PerfilForm = {
     nome: "",
     email: "",
     pais: "",
     idioma: "",
-    tipoUsuario: "Profissional",
+    tipoUsuario: tipoUsuarioPadrao,
     habilidade: "",
     foto: "",
     dataCadastro: "",
@@ -59,12 +61,16 @@ export default function Perfil() {
     }, [usuario]);
 
     function preencherFormulario(dados: Usuario) {
+        const tipoNormalizado = TIPOS_USUARIO.includes(dados.tipoUsuario)
+            ? dados.tipoUsuario
+            : tipoUsuarioPadrao;
+
         const preenchido: PerfilForm = {
             nome: dados.nome ?? "",
             email: dados.email ?? "",
             pais: dados.pais ?? "",
             idioma: dados.idioma ?? "",
-            tipoUsuario: dados.tipoUsuario ?? "Profissional",
+            tipoUsuario: tipoNormalizado,
             habilidade: dados.habilidade ?? "",
             foto: dados.foto ?? "",
             dataCadastro: dados.dataCadastro ?? new Date().toISOString(),
@@ -77,7 +83,12 @@ export default function Perfil() {
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) {
         const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        const field = name as keyof PerfilForm;
+        if (field === "tipoUsuario") {
+            setForm((prev) => ({ ...prev, tipoUsuario: value as TipoUsuario }));
+            return;
+        }
+        setForm((prev) => ({ ...prev, [field]: value }));
     }
 
     function handleFotoUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -229,9 +240,11 @@ export default function Perfil() {
                                             value={form.tipoUsuario}
                                             onChange={handleChange}
                                         >
-                                            <option value="Profissional">Profissional</option>
-                                            <option value="Mentor">Mentor</option>
-                                            <option value="Admin">Admin</option>
+                                            {TIPOS_USUARIO.map((tipo) => (
+                                                <option key={tipo} value={tipo}>
+                                                    {tipo}
+                                                </option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div>

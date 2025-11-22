@@ -1,4 +1,7 @@
 export type StatusTarefa = "Iniciada" | "Em andamento" | "Encerrada" | "Ativa";
+export const STATUS_TAREFA: StatusTarefa[] = ["Iniciada", "Em andamento", "Encerrada", "Ativa"];
+export type TipoUsuario = "Profissional" | "Estudante" | "Empresa";
+export const TIPOS_USUARIO: TipoUsuario[] = ["Profissional", "Estudante", "Empresa"];
 
 export type MensagemComUsuario = Mensagem & {
     usuario?: Partial<Usuario> | null;
@@ -10,7 +13,7 @@ export interface Usuario {
     email: string;
     pais: string;
     idioma: string;
-    tipoUsuario: string;
+    tipoUsuario: TipoUsuario;
     habilidade: string;
     dataCadastro: string;
     foto?: string;
@@ -38,6 +41,8 @@ export interface Projeto {
     codigo: number;
     conteudo: string;
     codigoUsuario: number;
+    idUsuario?: number;
+    dataEntrada?: string;
     usuario?: Usuario | null;
 }
 
@@ -52,6 +57,7 @@ export interface Tarefa {
     status: StatusTarefa | string;
     area: string;
     dataCriacao: string;
+    dataConclusao?: string | null;
     codigoProjeto?: number;
 }
 

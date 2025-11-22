@@ -1,9 +1,18 @@
 const BASE_URL = import.meta.env.VITE_URL_BASE;
 
+async function ensureOk(response: Response, method: string) {
+    if (response.ok) return;
+    const detail = await response
+        .text()
+        .then((txt) => txt || response.statusText)
+        .catch(() => response.statusText);
+    throw new Error(`HTTP ${response.status} ${method} - ${detail}`.trim());
+}
+
 export const api = {
     get: async <T>(endpoint: string): Promise<T> => {
         const response = await fetch(`${BASE_URL}${endpoint}`);
-        if (!response.ok) throw new Error("Erro na requisição GET");
+        await ensureOk(response, "GET");
         return response.json() as Promise<T>;
     },
 
@@ -13,7 +22,7 @@ export const api = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         });
-        if (!response.ok) throw new Error("Erro na requisição POST");
+        await ensureOk(response, "POST");
         if (response.status === 204 || response.headers.get("Content-Length") === "0") {
             return undefined as T;
         }
@@ -26,7 +35,7 @@ export const api = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         });
-        if (!response.ok) throw new Error("Erro na requisição PUT");
+        await ensureOk(response, "PUT");
         if (response.status === 204 || response.headers.get("Content-Length") === "0") {
             return undefined as T;
         }
@@ -37,7 +46,7 @@ export const api = {
         const response = await fetch(`${BASE_URL}${endpoint}`, {
             method: "DELETE",
         });
-        if (!response.ok) throw new Error("Erro na requisição DELETE");
+        await ensureOk(response, "DELETE");
         if (response.status === 204 || response.headers.get("Content-Length") === "0") {
             return undefined as T;
         }

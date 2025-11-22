@@ -114,6 +114,6 @@ Connect-Tallents/
 
 ## Screenshots / Demo
 - Video de apresentacao (ate 3 minutos): [Connect-Tallents-Video]()
-- Link do Repositorio Git: [Connect-Tallents-Projeto](https://github.com/ConnectTallents/Front)
+- Link do Repositorio Git: [Connect-Tallents-Projeto](https://github.com/Jounaxis/connect-tallents)
 - Link do Deploy no Vercel: [Connect-Tallents-Deploy](https://connect-tallents.vercel.app/)
 
